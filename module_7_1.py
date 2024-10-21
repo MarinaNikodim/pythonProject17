@@ -36,7 +36,7 @@ class Shop(Product):
 
 s1 = Shop(' ',  0, ' ')
 p1 = Product('Potato', 50.5, 'vegetables')
-p2 = Product('Spaghetti', 3.4, 'groceries')
+p2 = Product('Spaghetti', 3.5, 'groceries')
 p3 = Product('Potato', 5.5, 'vegetables')
 print(p2) # __str__
 
