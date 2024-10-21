@@ -1,0 +1,4 @@
+
+ Potato,  50.5,  vegetables
+ Spaghetti,  3.4,  groceries
+ Potato,  5.5,  vegetables
