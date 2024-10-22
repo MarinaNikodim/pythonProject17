@@ -1,4 +1,6 @@
 from pprint import pprint
+
+
 class Product:
     def __init__(self, name, weight, category):
         self.name = str(name)
@@ -15,23 +17,28 @@ class Shop(Product):
         self.__file_name = __file_name
 
     def get_products(self):
-        file = open(self.__file_name, 'r')
-        goods = file.read()
-        file.close()
-        return str(goods)
+
+        try:
+            with open(self.__file_name, 'r') as file:
+                goods = file.read()
+                file.close()
+                return str(goods)
+        except FileNotFoundError:
+            print('Файл не найден!')
 
     def add(self, *products):
         for product in products:
-            string =  str(product)
-            file = open(self.__file_name, 'r')
-            goods = file.read()
-            file.close()
-            if string in goods:
-                print(f'Продукт {product.name} уже есть в магазине')
-            else:
-                file = open(self.__file_name, 'a')
-                file.write(f'\n {string}')
+            string = str(product)
+            with open(self.__file_name, 'r') as file:
+                goods = file.read()
                 file.close()
+                if string in goods:
+                    print(f'Продукт {product.name} уже есть в магазине')
+                else:
+                    with open('Goods.txt') as __file_name:
+                        file = open(self.__file_name, 'a')
+                        file.write(f'{string} \n')
+                        file.close()
 
 
 s1 = Shop(' ',  0, ' ')
@@ -41,6 +48,5 @@ p3 = Product('Potato', 5.5, 'vegetables')
 print(p2) # __str__
 
 s1.add(p1, p2, p3)
-
 print(s1.get_products())
 
